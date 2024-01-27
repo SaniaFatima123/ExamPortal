@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-action-list>
+        <div mat-subheader>Menu</div>
+        <button mat-list-item routerLink="/admin/profile"><img src="../../../../assets/profile-icon.ico" style="width: 20px; margin-right: 5px;">Profile</button>  
+        <button mat-list-item routerLink="/admin/categories"><img src="../../../../assets/category-icon.ico" style="width: 20px; margin-right: 5px;">Categories</button>
+        <button mat-list-item routerLink="/admin/add-category"><img src="../../../../assets/add-category-icon.ico" style="width: 20px; margin-right: 5px;">Add Categories</button>
+        <button mat-list-item routerLink="/admin/quizzes"><img src="../../../../assets/quiz-icon.ico" style="width: 20px; margin-right: 5px;">Quizzes</button>
+        <button mat-list-item routerLink="/admin/add-quiz"><img src="../../../../assets/add-quiz-icon.ico" style="width: 20px; margin-right: 5px;">Add Quizzes</button>
+        <button mat-list-item routerLink="/admin/logout" (click)="logout()"><img src="../../../../assets/logout-icon.ico" style="width: 20px; margin-right: 5px;">Logout</button>
+    </mat-action-list>
+</mat-card>
+

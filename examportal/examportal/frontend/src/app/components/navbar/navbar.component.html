@@ -1,0 +1,25 @@
+<mat-toolbar style="background-color: #555555;">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon style="color: white;">menu</mat-icon>
+  </button>
+  <span style="color: white;">Prayas</span>
+  <span class="example-spacer"></span>
+  <span *ngIf="!isLoggedIn" routerLink="/login"  style="margin-right: 10px; color:white;" 
+   class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    Login
+  </span>
+  <span *ngIf="!isLoggedIn" [routerLink]="'/register'" style="color: white;"
+   class="example-icon " aria-label="Example icon-button with share icon">
+    Register
+  </span>
+  <span *ngIf="isLoggedIn" style="margin-right: 10px; color:white;"
+   class="example-icon" color="white"  (click)="navigateTo()"
+   aria-label="Example icon-button with share icon">
+    {{user.username}}
+  </span>
+  <span (click)="logout()" *ngIf="isLoggedIn" color="white" style="color: white;"
+   class="example-icon" aria-label="Example icon-button with share icon">
+    Logout
+</span>
+</mat-toolbar>
+

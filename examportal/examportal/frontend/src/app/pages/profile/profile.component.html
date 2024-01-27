@@ -1,0 +1,83 @@
+<mat-card *ngIf="user">
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="mt20 ml20">{{greet}} {{user.firstName}}, Welcome to Prayas</h1>
+        </div>
+        <div class="col-md-2 mt10"><h3>{{ currentDateTime }}</h3>
+        </div>
+    </div>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="container text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png?20220226140232"
+                     alt="default profile" class="profile-image"/>
+                     <h1 class="mt20">{{user.firstName}} {{user.lastName}}</h1>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <!-- table details -->
+                        <table class="table text-center">
+                            <tr>
+                                <td>Username</td>
+                                <td>{{user.username}}</td>
+                            </tr>
+                            <tr>
+                                <td>Userid</td>
+                                <td>{{user.id}}</td>
+                            </tr>
+                            <tr *ngIf="user.phone">
+                                <td>Phone</td>
+                                <td>{{user.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td>{{user.authorities[0].authority}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>{{user.enabled?"ACTIVE":"NOT ACTIVE"}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+        <div class="text-center mb20">
+            <button mat-raised-button class="btn">Update</button>
+            <button mat-raised-button class="btn ml20 ">SHARE</button>
+        </div>
+    
+</mat-card>
+
+
+<!-- upload profile picture -->
+
+<!-- <div class="container row">
+    <div class="col-md-6">
+    <input type="file" (change)="onFileChanged($event)">
+    </div>
+    <div class="col-md-6">
+    <input type="button" (click)="onUpload()" value="upload">
+    </div>
+    </div>
+    <hr />
+    <div class="container row"> -->
+    <!-- <div class="col-md-12">
+        <div *ngIf=message>{{message}}</div> </div>
+    </div>
+    <div class="container row">
+    <div class="col-md-6">
+    <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName" name="name" />
+    </div>
+    <div class="col-md-6">
+    <input type="button" (click)="getImage(user.id)" value="Get Image">
+    </div>
+<div class="container row"> 
+    <div class="col-md-12">
+<div *ngIf-retrievedImage> <img [src]="retrievedImage">
+</div>
+</div>
+</div> -->
