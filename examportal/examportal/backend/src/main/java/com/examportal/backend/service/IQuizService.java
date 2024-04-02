@@ -12,7 +12,7 @@ public interface IQuizService {
     Quiz updateQuiz(Quiz quiz);
     Quiz getQuiz(Long quizId);
     void deleteQuiz(Long quizId);
-    Set<Quiz> getQuizzes();
+    Set<Quiz> getQuizzes(int pageNumber);
 
     List<Quiz> getQuizzesOfCategory(Category category);
 

@@ -12,16 +12,21 @@ import { QuizService } from 'src/app/services/quiz.service';
 export class LoadQuizComponent implements OnInit {
   catId;
   quizzes;
+  pageNumber: number = 0;
   constructor(private route: ActivatedRoute, private quizService: QuizService,
     private snack: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.getAllQuizzes(this.pageNumber)
 
+  }
+
+  getAllQuizzes(pageNumber){
     this.route.params.subscribe((params) => {
       this.catId = params.catId;
       if (this.catId == 0) {
-        console.log("Load all quizzes")
-        this.quizService.quizzes().subscribe(
+        console.log("Load all quizzes**************")
+        this.quizService.quizzes(pageNumber).subscribe(
           (data) => {
             this.quizzes = data
           },
@@ -45,7 +50,15 @@ export class LoadQuizComponent implements OnInit {
         )
       }
     })
+  }
 
 
+  onClickNext(){
+    this.pageNumber = this.pageNumber + 1;
+    this.getAllQuizzes(this.pageNumber)
+  }
+  onClickPrev(){
+    this.pageNumber = this.pageNumber - 1;
+    this.getAllQuizzes(this.pageNumber)
   }
 }

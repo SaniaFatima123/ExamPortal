@@ -29,5 +29,10 @@
                 </mat-card>
             </div>
         </div>
+        <div style="display: flex; justify-content: center;" *ngIf="quizzes">
+        <button mat-raised-button class="btn ml10 mb10 mt10" (click)="onClickPrev()">Previous Page</button>
+        <button mat-raised-button class="btn ml10 mb10 mt10" (click)="onClickNext()">Next Page</button>
+        </div>
+        
     </div>
 </div>

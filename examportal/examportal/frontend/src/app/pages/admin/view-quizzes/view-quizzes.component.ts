@@ -19,7 +19,7 @@ export class ViewQuizzesComponent implements OnInit{
   }
   //get all quiz
   getAllQuizzes(){
-    this.quizService.quizzes().subscribe(
+    this.quizService.quizzes(0).subscribe(
       (data:any)=>{
         this.quizzes = data;
         // console.log(this.quizzes); 

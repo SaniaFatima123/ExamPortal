@@ -5,9 +5,12 @@ import com.examportal.backend.models.exam.Quiz;
 import com.examportal.backend.repository.QuizRepository;
 import com.examportal.backend.service.IQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,8 +41,11 @@ public class QuizServiceImpl implements IQuizService {
     }
 
     @Override
-    public Set<Quiz> getQuizzes() {
-        return new HashSet<>(quizRepository.findAll());
+    public Set<Quiz> getQuizzes(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber, 6);
+//        return new HashSet<>(quizRepository.findAll(pageable));
+        List<Quiz> quizList = quizRepository.findAll(pageable).getContent();
+        return new HashSet<>(quizList);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.examportal.backend.models.exam.Category;
 import com.examportal.backend.models.exam.Quiz;
 import com.examportal.backend.service.IQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,9 +36,10 @@ public class QuizController {
         quizService.deleteQuiz(qId);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<?> getQuizzes(){
-        return ResponseEntity.ok(quizService.getQuizzes());
+    @GetMapping("/getQuizzes")
+    public ResponseEntity<?> getQuizzes(@RequestParam(defaultValue = "0") int pageNumber){
+
+        return ResponseEntity.ok(quizService.getQuizzes(pageNumber));
     }
 
     @GetMapping("/category/{cid}")
