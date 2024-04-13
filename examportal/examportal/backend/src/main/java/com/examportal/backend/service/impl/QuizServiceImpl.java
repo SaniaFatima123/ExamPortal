@@ -49,7 +49,8 @@ public class QuizServiceImpl implements IQuizService {
     }
 
     @Override
-    public List<Quiz> getQuizzesOfCategory(Category category) {
-        return quizRepository.findByCategory(category);
+    public List<Quiz> getQuizzesOfCategory(Category category, int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber, 6);
+        return quizRepository.findByCategory(category, pageable);
     }
 }

@@ -25,13 +25,13 @@
             </div>
             <div class="col-md-12" *ngIf="quizzes.length==0">
                 <mat-card>
-                    <mat-card-content>No Quiz in this category</mat-card-content>
+                    <mat-card-content>No Quiz to show</mat-card-content>
                 </mat-card>
             </div>
         </div>
-        <div style="display: flex; justify-content: center;" *ngIf="quizzes">
-        <button mat-raised-button class="btn ml10 mb10 mt10" (click)="onClickPrev()">Previous Page</button>
-        <button mat-raised-button class="btn ml10 mb10 mt10" (click)="onClickNext()">Next Page</button>
+        <div style="display: flex; justify-content: center;" >
+        <button mat-raised-button class="btn ml10 mb10 mt10" [disabled]="pageNumber==0" (click)="onClickPrev()">Previous Page</button>
+        <button mat-raised-button class="btn ml10 mb10 mt10" (click)="onClickNext()" [disabled]="quizzes.length==0">Next Page</button>
         </div>
         
     </div>

@@ -13,16 +13,17 @@ export class ViewQuizzesComponent implements OnInit{
     private snack: MatSnackBar){}
 
   quizzes=[];
+  pageNumber: number = 0;
 
   ngOnInit(): void {
-   this.getAllQuizzes()
+   this.getAllQuizzes(this.pageNumber)
   }
   //get all quiz
-  getAllQuizzes(){
-    this.quizService.quizzes(0).subscribe(
+  getAllQuizzes(pageNumber){
+    this.quizService.quizzes(pageNumber).subscribe(
       (data:any)=>{
         this.quizzes = data;
-        // console.log(this.quizzes); 
+        console.log(this.quizzes); 
       },
       (error)=>{
         console.log("some error occured while loading quizzes"+ error)
@@ -36,7 +37,7 @@ export class ViewQuizzesComponent implements OnInit{
       this.snack.open('successfully deleted','',{
         duration: 3000
       })
-      this.getAllQuizzes()
+      this.getAllQuizzes(this.pageNumber)
       },
       (error)=>{
         this.snack.open('Some Error Occurred While Deleting','',{
@@ -45,6 +46,14 @@ export class ViewQuizzesComponent implements OnInit{
       }
      )
   }
- 
-
+  onClickNext(){
+    this.pageNumber = this.pageNumber + 1;
+    console.log(this.pageNumber)
+    this.getAllQuizzes(this.pageNumber)
+  }
+  onClickPrev(){
+    this.pageNumber = this.pageNumber - 1;
+    console.log(this.pageNumber)
+    this.getAllQuizzes(this.pageNumber)
+  }
 }

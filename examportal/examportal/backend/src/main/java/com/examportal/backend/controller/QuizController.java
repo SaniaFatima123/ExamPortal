@@ -42,11 +42,11 @@ public class QuizController {
         return ResponseEntity.ok(quizService.getQuizzes(pageNumber));
     }
 
-    @GetMapping("/category/{cid}")
-    public List<Quiz> getQuizzesOfCategory(@PathVariable("cid") Long cid){
+    @GetMapping("/category/{cid}/{pageNumber}")
+    public List<Quiz> getQuizzesOfCategory(@PathVariable("cid") Long cid, @PathVariable("pageNumber") int pageNumber){
         Category category = new Category();
         category.setCid(cid);
-        return quizService.getQuizzesOfCategory(category);
+        return quizService.getQuizzesOfCategory(category, pageNumber);
     }
 
 

@@ -26,7 +26,18 @@
             <button mat-raised-button (click)="deleteQuiz(q.qId)" class="ml20 btn">Delete</button> 
         </mat-card-action>
 </mat-card>
+ 
+<div class="col-md-12" *ngIf="quizzes.length==0">
+    <mat-card>
+        <mat-card-content>No Quiz to show</mat-card-content>
+    </mat-card>
+</div>
 
 <div class="container text-center mt20">
     <button routerLink='/admin/add-quiz' mat-raised-button style="background-color: #555555; color: white;">Add New Quiz</button>
 </div>
+
+<div style="display: flex; justify-content: center;" >
+    <button mat-raised-button class="btn ml10 mb10 mt10" [disabled]="pageNumber==0" (click)="onClickPrev()">Previous Page</button>
+    <button mat-raised-button class="btn ml10 mb10 mt10" (click)="onClickNext()" [disabled]="quizzes.length==0">Next Page</button>
+    </div>

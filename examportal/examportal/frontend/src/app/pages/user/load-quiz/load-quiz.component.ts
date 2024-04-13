@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { createFind } from 'rxjs/internal/operators/find';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { QuizService } from 'src/app/services/quiz.service';
 })
 export class LoadQuizComponent implements OnInit {
   catId;
-  quizzes;
+  quizzes: any = [];
   pageNumber: number = 0;
   constructor(private route: ActivatedRoute, private quizService: QuizService,
     private snack: MatSnackBar) { }
@@ -25,7 +24,6 @@ export class LoadQuizComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.catId = params.catId;
       if (this.catId == 0) {
-        console.log("Load all quizzes**************")
         this.quizService.quizzes(pageNumber).subscribe(
           (data) => {
             this.quizzes = data
@@ -36,10 +34,10 @@ export class LoadQuizComponent implements OnInit {
         )
       }
       else {
-        console.log("Load specific quiz")
         //load specific quizzes of category
-        this.quizService.getQuizzesOfCategory(this.catId).subscribe(
+        this.quizService.getQuizzesOfCategory(this.catId, pageNumber).subscribe(
           (data)=>{
+            // console.log(data)
             this.quizzes = data;
           },
           (error)=>{
@@ -55,10 +53,12 @@ export class LoadQuizComponent implements OnInit {
 
   onClickNext(){
     this.pageNumber = this.pageNumber + 1;
+    console.log(this.pageNumber)
     this.getAllQuizzes(this.pageNumber)
   }
   onClickPrev(){
     this.pageNumber = this.pageNumber - 1;
+    console.log(this.pageNumber)
     this.getAllQuizzes(this.pageNumber)
   }
 }

@@ -11,7 +11,6 @@ export class QuizService {
 
   //get all quizzes
   public quizzes(pageNumber) {
-    console.log("inside quiz service*****")
     return this._http.get(`${baseUrl}/quiz/getQuizzes?pageNumber=`+pageNumber);
   }
 
@@ -32,7 +31,7 @@ export class QuizService {
     return this._http.put(`${baseUrl}/quiz/`,quiz)
   }
   //get quizzes of category
-  public getQuizzesOfCategory(cid){
-    return this._http.get(`${baseUrl}/quiz/category/${cid}`);
+  public getQuizzesOfCategory(cid, pageNumber) {
+    return this._http.get(`${baseUrl}/quiz/category/${cid}/${pageNumber}`);
   }
 }

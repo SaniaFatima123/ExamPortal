@@ -14,6 +14,7 @@ export class ViewCategoriesComponent implements OnInit{
   
   ngOnInit(): void {
     this.categoryService.categories().subscribe((data:any)=>{
+      console.log("**********************inside admin view-category")
       this.categories = data;
       // console.log(this.categories);
     },

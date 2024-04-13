@@ -14,6 +14,6 @@ public interface IQuizService {
     void deleteQuiz(Long quizId);
     Set<Quiz> getQuizzes(int pageNumber);
 
-    List<Quiz> getQuizzesOfCategory(Category category);
+    List<Quiz> getQuizzesOfCategory(Category category,int pageNumber);
 
 }
