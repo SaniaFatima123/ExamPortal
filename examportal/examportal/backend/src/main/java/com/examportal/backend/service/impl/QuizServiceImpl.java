@@ -41,16 +41,28 @@ public class QuizServiceImpl implements IQuizService {
     }
 
     @Override
-    public Set<Quiz> getQuizzes(int pageNumber) {
+    public Set<Quiz> getQuizzes(int pageNumber, String searchText) {
         Pageable pageable = PageRequest.of(pageNumber, 6);
 //        return new HashSet<>(quizRepository.findAll(pageable));
-        List<Quiz> quizList = quizRepository.findAll(pageable).getContent();
-        return new HashSet<>(quizList);
+
+        if(searchText.equals("")){
+            List<Quiz> quizList = quizRepository.findAll(pageable).getContent();
+            return new HashSet<>(quizList);
+        }
+        else{
+          List<Quiz> quizList = quizRepository.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchText,
+                  searchText, pageable);
+            System.out.println("Search Text Result length = "+quizList.size());
+            return new HashSet<>(quizList);
+        }
+
+//        List<Quiz> quizList = quizRepository.findAll(pageable).getContent();
+//        return new HashSet<>(quizList);
     }
 
     @Override
     public List<Quiz> getQuizzesOfCategory(Category category, int pageNumber) {
         Pageable pageable = PageRequest.of(pageNumber, 6);
-        return quizRepository.findByCategory(category, pageable);
+        return quizRepository.findByCategory(category, pageable) ;
     }
 }

@@ -37,9 +37,10 @@ public class QuizController {
     }
 
     @GetMapping("/getQuizzes")
-    public ResponseEntity<?> getQuizzes(@RequestParam(defaultValue = "0") int pageNumber){
+    public ResponseEntity<?> getQuizzes(@RequestParam(defaultValue = "0") int pageNumber,
+                                        @RequestParam(defaultValue = "") String searchText){
 
-        return ResponseEntity.ok(quizService.getQuizzes(pageNumber));
+        return ResponseEntity.ok(quizService.getQuizzes(pageNumber, searchText));
     }
 
     @GetMapping("/category/{cid}/{pageNumber}")
