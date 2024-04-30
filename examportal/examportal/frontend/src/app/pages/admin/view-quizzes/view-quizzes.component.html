@@ -1,3 +1,14 @@
+<mat-form-field appearance="outline" class="w-100 mt20">
+    <mat-label>Search any quiz</mat-label>
+    <input matInput
+           #searchkeyword
+           (keyup)="searchByKeyword(searchkeyword.value)"
+           name="searchKey"
+           id="searchKey"
+           placeholder="Search any quiz">
+    <mat-hint>Search any quiz</mat-hint>
+</mat-form-field>
+
 <mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes">
     <mat-card-header>
 

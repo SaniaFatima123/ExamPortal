@@ -10,8 +10,10 @@ export class QuizService {
   constructor(private _http: HttpClient) { }
 
   //get all quizzes
-  public quizzes(pageNumber) {
-    return this._http.get(`${baseUrl}/quiz/getQuizzes?pageNumber=`+pageNumber);
+  public quizzes(pageNumber, searchKey) {
+    console.log("pagenum***"+pageNumber)
+    console.log("searchKey***"+searchKey)
+    return this._http.get(`${baseUrl}/quiz/getQuizzes?pageNumber=`+pageNumber+"&searchText=" +searchKey);
   }
 
   //add a quiz

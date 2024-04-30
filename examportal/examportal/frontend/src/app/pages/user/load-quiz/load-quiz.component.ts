@@ -20,11 +20,18 @@ export class LoadQuizComponent implements OnInit {
 
   }
 
-  getAllQuizzes(pageNumber){
+  searchByKeyword(searchkeyword) {
+    console.log(searchkeyword);
+    this.pageNumber = 0;
+    this.quizzes = [];
+    this.getAllQuizzes(this.pageNumber,searchkeyword);
+  }
+
+  getAllQuizzes(pageNumber, searchKey: string = ""){
     this.route.params.subscribe((params) => {
       this.catId = params.catId;
       if (this.catId == 0) {
-        this.quizService.quizzes(pageNumber).subscribe(
+        this.quizService.quizzes(pageNumber, searchKey).subscribe(
           (data) => {
             this.quizzes = data
           },

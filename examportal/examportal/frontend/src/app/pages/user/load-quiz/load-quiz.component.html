@@ -1,6 +1,18 @@
 <div class="bootstrap-wrapper">
     <div class="container-fluid">
         <h1 class="mt20">Available Quizzes</h1>
+
+        <mat-form-field appearance="outline" class="w-100" *ngIf="catId==0">
+            <mat-label>Search any quiz</mat-label>
+            <input matInput
+                   #searchkeyword
+                   (keyup)="searchByKeyword(searchkeyword.value)"
+                   name="searchKey"
+                   id="searchKey"
+                   placeholder="Search any quiz">
+            <mat-hint>Search any quiz</mat-hint>
+        </mat-form-field>
+
         <div class="row" *ngIf="quizzes">
             <div class="col-md-4" *ngFor="let q of quizzes">
                 <mat-card class="mb20">

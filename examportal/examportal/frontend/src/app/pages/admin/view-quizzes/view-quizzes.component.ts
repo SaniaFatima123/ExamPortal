@@ -16,11 +16,19 @@ export class ViewQuizzesComponent implements OnInit{
   pageNumber: number = 0;
 
   ngOnInit(): void {
-   this.getAllQuizzes(this.pageNumber)
+   this.getAllQuizzes(this.pageNumber, "")
   }
+
+  searchByKeyword(searchkeyword) {
+    console.log(searchkeyword);
+    this.pageNumber = 0;
+    this.quizzes = [];
+    this.getAllQuizzes(this.pageNumber,searchkeyword);
+  }
+
   //get all quiz
-  getAllQuizzes(pageNumber){
-    this.quizService.quizzes(pageNumber).subscribe(
+  getAllQuizzes(pageNumber, searchKey: string = ""){
+    this.quizService.quizzes(pageNumber, searchKey).subscribe(
       (data:any)=>{
         this.quizzes = data;
         console.log(this.quizzes); 
@@ -37,7 +45,7 @@ export class ViewQuizzesComponent implements OnInit{
       this.snack.open('successfully deleted','',{
         duration: 3000
       })
-      this.getAllQuizzes(this.pageNumber)
+      this.getAllQuizzes(this.pageNumber, "")
       },
       (error)=>{
         this.snack.open('Some Error Occurred While Deleting','',{
